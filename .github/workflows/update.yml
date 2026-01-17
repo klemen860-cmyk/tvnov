@@ -1,57 +1,35 @@
-name: Otomatik M3U Guncelleme
+update.yml içeriği name: Now TV M3U Guncelle
 
 on:
-  schedule:
-    # Her 5 saatte bir tetiklenir
-    - cron: "0 */5 * * *"
-  workflow_dispatch:
+  schedule:
+    # Her 5 saatte bir çalışır (UTC zaman dilimine göre)
+    - cron: "0 */5 * * *"
+  workflow_dispatch: # İstediğinde manuel başlatabilmen için
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-    # Eğer bir işlem sürerken yenisi başlarsa eskisini iptal et (Çakışmayı önler)
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+    steps:
+      - name: Depoyu kopyala
+        uses: actions/checkout@v3
 
-    steps:
-      - name: Depoyu kopyala
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Tüm geçmişi çekerek çakışma riskini azaltır
+      - name: Python Kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      - name: Python Kurulumu
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+      - name: Kütüphaneleri Yukle
+        run: |
+          pip install requests
 
-      - name: Kütüphaneleri Yukle
-        run: |
-          pip install requests
+      - name: Scripti Calistir
+        run: python nowdizi.py
 
-      - name: Dizileri Guncelle (5 Saatte Bir)
-        run: python nowdizi.py
-
-      - name: Filmleri Guncelle (Gunde 1 Kez)
-        # Sadece gece yarısı veya manuel başlatıldığında çalışır
-        if: github.event.schedule == '0 0 * * *' || github.event_name == 'workflow_dispatch'
-        run: python filmcek.py
-
-      - name: Guncellenen Dosyalari Kaydet
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Değişiklikleri yerel hafızaya al
-          git add Now_Diziler.m3u master.m3u film_kod.json
-          
-          # Değişiklik var mı kontrol et
-          if git diff --staged --quiet; then
-            echo "Güncellenecek yeni veri yok."
-          else
-            # Çakışmayı önlemek için önce uzak depodaki değişiklikleri çek ve kendi commitini üzerine ekle
-            git pull --rebase origin main
-            git commit -m "Otomatik Güncelleme: $(date +'%Y-%m-%d %H:%M')"
-            git push origin main
-          fi
+      - name: Guncellenen Dosyayi Kaydet
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add Now_Diziler.m3u
+          git commit -m "Otomatik Güncelleme: $(date)" || echo "Değişiklik yok"
+          git push
