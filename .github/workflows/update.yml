@@ -10,9 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # Eğer bir işlem sürerken yenisi başlarsa eskisini iptal et (Çakışmayı önler)
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
       - name: Depoyu kopyala
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Tüm geçmişi çekerek çakışma riskini azaltır
 
       - name: Python Kurulumu
         uses: actions/setup-python@v4
@@ -23,20 +30,28 @@ jobs:
         run: |
           pip install requests
 
-      # Bu adım HER tetiklendiğinde (5 saatte bir) çalışır
       - name: Dizileri Guncelle (5 Saatte Bir)
         run: python nowdizi.py
 
-      # Bu adım SADECE gece yarısı (UTC 00:00) tetiklendiğinde çalışır
       - name: Filmleri Guncelle (Gunde 1 Kez)
+        # Sadece gece yarısı veya manuel başlatıldığında çalışır
         if: github.event.schedule == '0 0 * * *' || github.event_name == 'workflow_dispatch'
         run: python filmcek.py
 
       - name: Guncellenen Dosyalari Kaydet
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          # Değişen tüm dosyaları (m3u ve json) ekle
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Değişiklikleri yerel hafızaya al
           git add Now_Diziler.m3u master.m3u film_kod.json
-          git commit -m "Otomatik Güncelleme: $(date)" || echo "Değişiklik yok"
-          git push
+          
+          # Değişiklik var mı kontrol et
+          if git diff --staged --quiet; then
+            echo "Güncellenecek yeni veri yok."
+          else
+            # Çakışmayı önlemek için önce uzak depodaki değişiklikleri çek ve kendi commitini üzerine ekle
+            git pull --rebase origin main
+            git commit -m "Otomatik Güncelleme: $(date +'%Y-%m-%d %H:%M')"
+            git push origin main
+          fi
