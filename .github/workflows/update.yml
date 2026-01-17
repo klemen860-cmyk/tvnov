@@ -1,10 +1,10 @@
-name: Now TV M3U Guncelle
+name: Otomatik M3U Guncelleme
 
 on:
   schedule:
-    # Her 5 saatte bir çalışır (UTC zaman dilimine göre)
+    # Her 5 saatte bir tetiklenir
     - cron: "0 */5 * * *"
-  workflow_dispatch: # İstediğinde manuel başlatabilmen için
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,13 +23,20 @@ jobs:
         run: |
           pip install requests
 
-      - name: Scripti Calistir
+      # Bu adım HER tetiklendiğinde (5 saatte bir) çalışır
+      - name: Dizileri Guncelle (5 Saatte Bir)
         run: python nowdizi.py
 
-      - name: Guncellenen Dosyayi Kaydet
+      # Bu adım SADECE gece yarısı (UTC 00:00) tetiklendiğinde çalışır
+      - name: Filmleri Guncelle (Gunde 1 Kez)
+        if: github.event.schedule == '0 0 * * *' || github.event_name == 'workflow_dispatch'
+        run: python filmcek.py
+
+      - name: Guncellenen Dosyalari Kaydet
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add Now_Diziler.m3u
+          # Değişen tüm dosyaları (m3u ve json) ekle
+          git add Now_Diziler.m3u master.m3u film_kod.json
           git commit -m "Otomatik Güncelleme: $(date)" || echo "Değişiklik yok"
           git push
