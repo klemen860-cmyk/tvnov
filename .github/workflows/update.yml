@@ -1,35 +1,40 @@
-update.yml içeriği name: Now TV M3U Guncelle
+name: Now TV M3U Guncelle
 
 on:
-  schedule:
-    # Her 5 saatte bir çalışır (UTC zaman dilimine göre)
-    - cron: "0 */5 * * *"
-  workflow_dispatch: # İstediğinde manuel başlatabilmen için
+  schedule:
+    # Her 5 saatte bir çalışır (UTC)
+    - cron: "0 */5 * * *"
+  workflow_dispatch: # Manuel tetikleme için
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
+    # Yazma izni eklenmesi (Push hatası almamak için önemlidir)
+    permissions:
+      contents: write
 
-    steps:
-      - name: Depoyu kopyala
-        uses: actions/checkout@v3
+    steps:
+      - name: Depoyu kopyala
+        uses: actions/checkout@v4 # v3 yerine v4 daha günceldir
 
-      - name: Python Kurulumu
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+      - name: Python Kurulumu
+        uses: actions/setup-python@v5 # v4 yerine v5 daha günceldir
+        with:
+          python-version: '3.9'
 
-      - name: Kütüphaneleri Yukle
-        run: |
-          pip install requests
+      - name: Kütüphaneleri Yukle
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-      - name: Scripti Calistir
-        run: python nowdizi.py
+      - name: Scripti Calistir
+        run: python nowdizi.py
 
-      - name: Guncellenen Dosyayi Kaydet
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git add Now_Diziler.m3u
-          git commit -m "Otomatik Güncelleme: $(date)" || echo "Değişiklik yok"
-          git push
+      - name: Guncellenen Dosyayi Kaydet
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Now_Diziler.m3u
+          # Eğer değişiklik yoksa hata vermemesi için 'exit 0' ekliyoruz
+          git commit -m "Otomatik Güncelleme: $(date +'%Y-%m-%d %H:%M')" || exit 0
+          git push
