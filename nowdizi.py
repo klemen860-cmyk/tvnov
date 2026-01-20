@@ -1,6 +1,7 @@
 import requests
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -9,6 +10,7 @@ HEADERS = {
 
 MAX_MISSED_EPISODES = 5 
 
+# Sözlük ve BASE_URLS listesini olduğu gibi koruyoruz
 TURKCE_ISIMLER = {
     "Adi-Mutluluk": "Adı Mutluluk", "Adi-Zehra": "Adı Zehra", "Adim-Farah": "Adım Farah",
     "Ask-Evlilik-Bosanma": "Aşk Evlilik Boşanma", "Ask-Mantik-Intikam": "Aşk Mantık İntikam",
@@ -108,43 +110,69 @@ BASE_URLS = [
     "https://www.nowtv.com.tr/Zumruduanka/bolum/{}"
 ]
 
-with open("Now_Diziler.m3u", "w", encoding="utf-8") as f:
-    f.write("#EXTM3U\n")
-    for BASE_URL in BASE_URLS:
-        episode = 1
-        missed_count = 0
-        url_slug = BASE_URL.split("/")[3]
-        dizi_adi = TURKCE_ISIMLER.get(url_slug, url_slug.replace("-", " "))
+def dizi_tara(base_url, session):
+    """Her bir dizi için ayrı çalışacak olan fonksiyon"""
+    results = []
+    episode = 1
+    missed_count = 0
+    url_slug = base_url.split("/")[3]
+    dizi_adi = TURKCE_ISIMLER.get(url_slug, url_slug.replace("-", " "))
+    
+    while missed_count < MAX_MISSED_EPISODES:
+        urls_to_check = [base_url.format(episode), base_url.format(f"{episode}/ozel-bolum")]
+        found_in_round = False
         
-        while missed_count < MAX_MISSED_EPISODES:
-            urls_to_check = [BASE_URL.format(episode), BASE_URL.format(f"{episode}/ozel-bolum")]
-            found_in_round = False
-            
-            for url in urls_to_check:
-                try:
-                    r = requests.get(url, headers=HEADERS, timeout=10)
-                    if r.status_code == 200:
-                        html = r.text
-                        source_match = re.search(r"source:\s*['\"]([^'\"]+\.m3u8[^'\"]*)['\"]", html)
+        for url in urls_to_check:
+            try:
+                # Session kullanarak bağlantıyı açık tutuyoruz
+                r = session.get(url, headers=HEADERS, timeout=10)
+                if r.status_code == 200:
+                    html = r.text
+                    source_match = re.search(r"source:\s*['\"]([^'\"]+\.m3u8[^'\"]*)['\"]", html)
+                    
+                    if source_match:
+                        poster_match = re.search(r"poster:\s*['\"]([^'\"]+\.(?:jpg|png)[^'\"]*)['\"]", html)
+                        poster = poster_match.group(1) if poster_match else ""
+                        source = source_match.group(1)
+                        label = f"{dizi_adi} - Bölüm {episode}" if "ozel-bolum" not in url else f"{dizi_adi} - Bölüm {episode} (Özel)"
                         
-                        if source_match:
-                            # Düzenleme: .jpg veya .png uzantılarını yakalayacak şekilde güncellendi
-                            poster_match = re.search(r"poster:\s*['\"]([^'\"]+\.(?:jpg|png)[^'\"]*)['\"]", html)
-                            poster = poster_match.group(1) if poster_match else ""
-                            source = source_match.group(1)
-                            label = f"{dizi_adi} - Bölüm {episode}" if "ozel-bolum" not in url else f"{dizi_adi} - Bölüm {episode} (Özel)"
-                            
-                            f.write(f'#EXTINF:-1 tvg-logo="{poster}" group-title="{dizi_adi}",{label}\n{source}\n')
+                        entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="{dizi_adi}",{label}\n{source}\n'
+                        results.append(entry)
+                        print(f"{label} OK")
+                        found_in_round = True
+            except Exception:
+                pass
+        
+        if found_in_round:
+            missed_count = 0
+        else:
+            missed_count += 1
+        
+        episode += 1
+    return results
+
+def main():
+    # Dosyayı tek seferde açıp yazmak için sonuçları toplayacağız
+    with open("Now_Diziler.m3u", "w", encoding="utf-8") as f:
+        f.write("#EXTM3U\n")
+        
+        # requests.Session() ile TCP bağlantısını optimize ediyoruz
+        with requests.Session() as session:
+            # max_workers=15 aynı anda 15 dizinin taranacağı anlamına gelir
+            with ThreadPoolExecutor(max_workers=15) as executor:
+                # Tüm dizileri havuzumuza ekliyoruz
+                future_to_url = {executor.submit(dizi_tara, url, session): url for url in BASE_URLS}
+                
+                for future in future_to_url:
+                    try:
+                        dizi_sonuclari = future.result()
+                        for satir in dizi_sonuclari:
+                            f.write(satir)
                             f.flush()
-                            print(f"{label} OK")
-                            found_in_round = True
-                except Exception:
-                    pass
-            
-            if found_in_round:
-                missed_count = 0
-            else:
-                missed_count += 1
-            
-            episode += 1
-            time.sleep(0.1)
+                    except Exception as e:
+                        print(f"Hata oluştu: {e}")
+
+if __name__ == "__main__":
+    start_time = time.time()
+    main()
+    print(f"--- Tarama {time.time() - start_time:.2f} saniyede tamamlandı ---")
