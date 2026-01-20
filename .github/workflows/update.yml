@@ -2,23 +2,23 @@ name: Now TV M3U Guncelle
 
 on:
   schedule:
-    # Her 5 saatte bir çalışır (UTC)
-    - cron: "0 */5 * * *"
+    # Her 2 saatte bir çalışır (UTC)
+    - cron: "0 */2 * * *"
   workflow_dispatch: # Manuel tetikleme için
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Yazma izni eklenmesi (Push hatası almamak için önemlidir)
+    # Yazma izni (Push hatası almamak için kritik)
     permissions:
       contents: write
 
     steps:
       - name: Depoyu kopyala
-        uses: actions/checkout@v4 # v3 yerine v4 daha günceldir
+        uses: actions/checkout@v4
 
       - name: Python Kurulumu
-        uses: actions/setup-python@v5 # v4 yerine v5 daha günceldir
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
@@ -35,6 +35,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add Now_Diziler.m3u
-          # Eğer değişiklik yoksa hata vermemesi için 'exit 0' ekliyoruz
+          # Değişiklik yoksa hata vermemesi için 'exit 0'
           git commit -m "Otomatik Güncelleme: $(date +'%Y-%m-%d %H:%M')" || exit 0
           git push
