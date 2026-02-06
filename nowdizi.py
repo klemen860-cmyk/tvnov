@@ -10,7 +10,6 @@ HEADERS = {
 
 MAX_MISSED_EPISODES = 5 
 
-# Sözlük ve BASE_URLS listesini olduğu gibi koruyoruz
 TURKCE_ISIMLER = {
     "Adi-Mutluluk": "Adı Mutluluk", "Adi-Zehra": "Adı Zehra", "Adim-Farah": "Adım Farah",
     "Ask-Evlilik-Bosanma": "Aşk Evlilik Boşanma", "Ask-Mantik-Intikam": "Aşk Mantık İntikam",
@@ -124,7 +123,6 @@ def dizi_tara(base_url, session):
         
         for url in urls_to_check:
             try:
-                # Session kullanarak bağlantıyı açık tutuyoruz
                 r = session.get(url, headers=HEADERS, timeout=10)
                 if r.status_code == 200:
                     html = r.text
@@ -152,15 +150,11 @@ def dizi_tara(base_url, session):
     return results
 
 def main():
-    # Dosyayı tek seferde açıp yazmak için sonuçları toplayacağız
     with open("Now_Diziler.m3u", "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         
-        # requests.Session() ile TCP bağlantısını optimize ediyoruz
         with requests.Session() as session:
-            # max_workers=15 aynı anda 15 dizinin taranacağı anlamına gelir
             with ThreadPoolExecutor(max_workers=15) as executor:
-                # Tüm dizileri havuzumuza ekliyoruz
                 future_to_url = {executor.submit(dizi_tara, url, session): url for url in BASE_URLS}
                 
                 for future in future_to_url:
