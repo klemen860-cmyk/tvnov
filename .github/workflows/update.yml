@@ -2,14 +2,12 @@ name: Now TV M3U Guncelle
 
 on:
   schedule:
-    # Her 2 saatte bir çalışır (UTC)
     - cron: "0 */2 * * *"
-  workflow_dispatch: # Manuel tetikleme için
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Yazma izni (Push hatası almamak için kritik)
     permissions:
       contents: write
 
