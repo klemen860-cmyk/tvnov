@@ -43,10 +43,6 @@ https://corestream.ronaldovurdu.help//hls/tivibu-spor-1.m3u8
 https://corestream.ronaldovurdu.help//hls/tivibu-spor-2.m3u8
 #EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/slwrz41642604502.png" group-title="SPOR",Tivibu Spor 3
 https://corestream.ronaldovurdu.help//hls/tivibu-spor-3.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/59bqi81642604517.png" group-title="SPOR",Tivibu Spor 4
-#EXTVLCOPT:http-referrer=https://inattv1248.xyz/
-#EXTVLCOPT:http-user-agent=NetSurf/1.0 (Linux; i686)
-https://9vy.d72577a9dd0ec19.sbs/t4/mono.m3u8
 #EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43023.jpeg" group-title="SPOR",Tabii Spor 1
 https://beert7sqimrk0bfdupfgn6qew.medya.trt.com.tr/master_1080p.m3u8
 #EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43008.jpeg" group-title="SPOR",Tabii Spor 2
