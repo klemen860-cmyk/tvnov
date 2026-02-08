@@ -1,63 +1,63 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/r7ygc58.png" group-title="CANLI BELGESEL 🇹🇷🦁",BBC EARTH HD
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/r7ygc58.png" group-title="BELGESEL",BBC EARTH HD
 http://65.108.239.207:80/bbc/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/t8d32sa.jpg" group-title="CANLI BELGESEL 🇹🇷🦁",Discovery Channel HD
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/t8d32sa.jpg" group-title="BELGESEL",Discovery Channel HD
 http://65.108.239.207:80/discovery/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/dt8yrc5.png" group-title="CANLI BELGESEL 🇹🇷🦁",Discovery ID
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/dt8yrc5.png" group-title="BELGESEL",Discovery ID
 http://65.108.239.207:80/discs/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/1wxhcxy.png" group-title="CANLI BELGESEL 🇹🇷🦁",Love Nature
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/1wxhcxy.png" group-title="BELGESEL",Love Nature
 http://65.108.239.207:80/lovenature/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/1splqax." group-title="CANLI BELGESEL 🇹🇷🦁",National Geographic HD
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/1splqax." group-title="BELGESEL",National Geographic HD
 https://saran-live.ercdn.net/natgeohd/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/nc5bnag." group-title="CANLI BELGESEL 🇹🇷🦁",National Geographic WILD
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/nc5bnag." group-title="BELGESEL",National Geographic WILD
 https://saran-live.ercdn.net/natgeowild/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/am9s8rc.png" group-title="CANLI BELGESEL 🇹🇷🦁",Tarih TV
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/am9s8rc.png" group-title="BELGESEL",Tarih TV
 http://65.108.239.207:80/tarihtv/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/ajnzvgk." group-title="CANLI BELGESEL 🇹🇷🦁",TRT Belgesel
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/ajnzvgk." group-title="BELGESEL",TRT Belgesel
 https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/51no64x.png" group-title="CANLI BELGESEL 🇹🇷🦁",ViasatHistory
+#EXTINF:-1 tvg-logo="https://i.hizliresim.com/51no64x.png" group-title="BELGESEL",ViasatHistory
 http://65.108.239.207:80/viasathistory/index.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6c/TRT_1_logo_%282012-2021%29.png" group-title="ULUSAL CANLI 🇹🇷",TRT1 HD
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6c/TRT_1_logo_%282012-2021%29.png" group-title="ULUSAL",TRT1 HD
 https://tv-trt1.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/5rhmw31628798883.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS 1
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/5rhmw31628798883.png" group-title="SPOR",beIN SPORTS 1
 https://corestream.ronaldovurdu.help//hls/bein-sports-11.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/7uv6x71628799003.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS 2
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/7uv6x71628799003.png" group-title="SPOR",beIN SPORTS 2
 https://corestream.ronaldovurdu.help//hls/bein-sports-2.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/u3117i1628798857.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS 3
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/u3117i1628798857.png" group-title="SPOR",beIN SPORTS 3
 https://corestream.ronaldovurdu.help//hls/bein-sports-3.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/2ktmcp1628798841.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS 4
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/2ktmcp1628798841.png" group-title="SPOR",beIN SPORTS 4
 https://corestream.ronaldovurdu.help//hls/bein-sports-4.m3u8
-#EXTINF:-1 tvg-logo="https://i.imgur.com/iRKfaee.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS 5
+#EXTINF:-1 tvg-logo="https://i.imgur.com/iRKfaee.png" group-title="SPOR",beIN SPORTS 5
 https://corestream.ronaldovurdu.help//hls/bein-sports-5.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6f/BeIN_Sports_MAX.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS Max 1
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6f/BeIN_Sports_MAX.png" group-title="SPOR",beIN SPORTS Max 1
 https://corestream.ronaldovurdu.help//hls/bein-sports-max-1.m3u8
-#EXTINF:-1 tvg-logo="https://i.imgur.com/t7U20yR.png" group-title="CANLI SPOR 🇹🇷⚽",beIN SPORTS Max 2
+#EXTINF:-1 tvg-logo="https://i.imgur.com/t7U20yR.png" group-title="SPOR",beIN SPORTS Max 2
 https://corestream.ronaldovurdu.help//hls/bein-sports-max-2.m3u8
-#EXTINF:-1 tvg-logo="https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20230302923239.png" group-title="CANLI SPOR 🇹🇷⚽",S SPORT
+#EXTINF:-1 tvg-logo="https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20230302923239.png" group-title="SPOR",S SPORT
 https://corestream.ronaldovurdu.help//hls/s-sport.m3u8
-#EXTINF:-1 tvg-logo="https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20230302923321.png" group-title="CANLI SPOR 🇹🇷⚽",S SPORT 2
+#EXTINF:-1 tvg-logo="https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20230302923321.png" group-title="SPOR",S SPORT 2
 https://corestream.ronaldovurdu.help//hls/s-sport-2.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/qadnsi1642604437.png" group-title="CANLI SPOR 🇹🇷⚽",Tivibu Spor 1
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/qadnsi1642604437.png" group-title="SPOR",Tivibu Spor 1
 https://corestream.ronaldovurdu.help//hls/tivibu-spor-1.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/kuasdm1642604455.png" group-title="CANLI SPOR 🇹🇷⚽",Tivibu Spor 2
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/kuasdm1642604455.png" group-title="SPOR",Tivibu Spor 2
 https://corestream.ronaldovurdu.help//hls/tivibu-spor-2.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/slwrz41642604502.png" group-title="CANLI SPOR 🇹🇷⚽",Tivibu Spor 3
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/slwrz41642604502.png" group-title="SPOR",Tivibu Spor 3
 https://corestream.ronaldovurdu.help//hls/tivibu-spor-3.m3u8
-#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/59bqi81642604517.png" group-title="CANLI SPOR 🇹🇷⚽",Tivibu Spor 4
+#EXTINF:-1 tvg-logo="https://r2.thesportsdb.com/images/media/channel/logo/59bqi81642604517.png" group-title="SPOR",Tivibu Spor 4
 #EXTVLCOPT:http-referrer=https://inattv1248.xyz/
 #EXTVLCOPT:http-user-agent=NetSurf/1.0 (Linux; i686)
 https://9vy.d72577a9dd0ec19.sbs/t4/mono.m3u8
-#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43023.jpeg" group-title="CANLI SPOR 🇹🇷⚽",Tabii Spor 1
+#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43023.jpeg" group-title="SPOR",Tabii Spor 1
 https://beert7sqimrk0bfdupfgn6qew.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43008.jpeg" group-title="CANLI SPOR 🇹🇷⚽",Tabii Spor 2
+#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43008.jpeg" group-title="SPOR",Tabii Spor 2
 https://klublsslubcgyiz7zqt5bz8il.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43011.jpeg" group-title="CANLI SPOR 🇹🇷⚽",Tabii Spor 3
+#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43011.jpeg" group-title="SPOR",Tabii Spor 3
 https://ujnf69op16x2fiiywxcnx41q8.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43014.jpeg" group-title="CANLI SPOR 🇹🇷⚽",Tabii Spor 4
+#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43014.jpeg" group-title="SPOR",Tabii Spor 4
 https://bfxy3jgeydpbphtk8qfqwm3hr.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43017.jpeg" group-title="CANLI SPOR 🇹🇷⚽",Tabii Spor 5
+#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43017.jpeg" group-title="SPOR",Tabii Spor 5
 https://z3mmimwz148csv0vaxtphqspf.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43020.jpeg" group-title="CANLI SPOR 🇹🇷⚽",Tabii Spor 6
+#EXTINF:-1 tvg-logo="https://cms-tabii-public-image.tabii.com/int/webp/w600/q84/43020.jpeg" group-title="SPOR",Tabii Spor 6
 https://vbtob9hyq58eiophct5qctxr2.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-logo="https://cdn-i.pr.trt.com.tr/trttv/w750/h750/q100/13687983.png" group-title="CANLI SPOR 🇹🇷⚽",TRT Spor HD
+#EXTINF:-1 tvg-logo="https://cdn-i.pr.trt.com.tr/trttv/w750/h750/q100/13687983.png" group-title="SPOR",TRT Spor HD
 https://tv-trtspor1.medya.trt.com.tr/master.m3u8
