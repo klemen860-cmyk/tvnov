@@ -1,4 +1,4 @@
 #EXTM3U
 #EXTINF:-1, beIN SPORTS 1
-#EXTHTTP:{"attributes":{"User-Agent":"Mozilla/5.0","Referer":"https://trgoals1540.xyz/"}}
+#EXTMYHTTP:{"attributes":{"User-Agent":"Mozilla/5.0","Referer":"https://trgoals1540.xyz/"}}
 https://no6.d72577a9dd0ec27.sbs/zirve/mono.m3u8
